@@ -1,13 +1,13 @@
-import {user, host, database, password, port} from './restricted';
+const hidden = require('./restricted');
 
 const Pool = require('pg').Pool
 
 const pool = new Pool({
-    user: user,
-    host: host,
-    database: database,
-    password: password,
-    port: port,
+    user: hidden.user,
+    host: hidden.host,
+    database: hidden.database,
+    password: hidden.password,
+    port: hidden.port,
 })
 
 const getUsers = (request, response) => {
