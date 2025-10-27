@@ -1,10 +1,22 @@
-const express = require('express')
 const bodyParser = require('body-parser')
 const db = require('./queries')
-const app = express()
+var express = require('express')
+var cors = require('cors')
+
+var app = express()
 const port = 3000
 
-app.use(bodyParser.json())
+app.use(cors())
+
+app.use((req, res, next) => {
+    const error = new Error('Something went wrong')
+    next(error)
+})
+
+app.use((err, req, res, next) => {
+    console.error('Error: ', err.message)
+    res.status(500).send('Internal Server Error')
+})
 app.use(
     bodyParser.urlencoded({
         extended: true,
