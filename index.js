@@ -1,13 +1,19 @@
+const express = require('express')
+//const cors = require('cors')
 const bodyParser = require('body-parser')
+//const helmet = require('helmet')
 const db = require('./queries')
-var express = require('express')
-var cors = require('cors')
 
-var app = express()
+const app = express()
+
 const port = 3000
 
-app.use(cors())
+//app.use(cors())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true,}))
+//app.use(helmet())
 
+/*
 app.use((req, res, next) => {
     const error = new Error('Something went wrong')
     next(error)
@@ -17,11 +23,8 @@ app.use((err, req, res, next) => {
     console.error('Error: ', err.message)
     res.status(500).send('Internal Server Error')
 })
-app.use(
-    bodyParser.urlencoded({
-        extended: true,
-    })
-)
+*/
+
 app.get('/', (request, response) => {
     response.json({info: 'Node.js, Express, and Postgres API'})
 })
@@ -33,5 +36,5 @@ app.put('/users/:id', db.updateUser)
 app.delete('/users/:id', db.deleteUser)
 
 app.listen(port, ()=> {
-    console.log(`App running on port ${port}.`)
+    console.log(`App running on port: ${port}.`)
 })

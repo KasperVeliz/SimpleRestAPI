@@ -3,11 +3,11 @@ const hidden = require('./restricted');
 const Pool = require('pg').Pool
 
 const pool = new Pool({
-    user: hidden.user,
-    host: hidden.host,
-    database: hidden.database,
-    password: hidden.password,
-    port: hidden.port,
+    user: 'me',
+    host: 'localhost',
+    database: 'api',
+    password: 'password',
+    port: 5432,
 })
 
 const getUsers = (request, response) => {
