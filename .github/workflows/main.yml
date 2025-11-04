@@ -1,0 +1,14 @@
+name: Simple REST API
+
+env:
+  PASSWRD: ${{secrets.PASSWORD}}
+  DATABASE: ${{secrets.DATABASE}}
+  HOST: ${{secrets.HOST}}
+  USER: ${{secrets.USER}}
+  PORT: ${{secrets.PORT}}
+  
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
