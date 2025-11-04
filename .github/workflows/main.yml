@@ -1,14 +1,22 @@
 name: Simple REST API
-
-env:
-  PASSWRD: ${{secrets.PASSWORD}}
-  DATABASE: ${{secrets.DATABASE}}
-  HOST: ${{secrets.HOST}}
-  USER: ${{secrets.USER}}
-  PORT: ${{secrets.PORT}}
   
 on:
   push:
     branches: ['main']
   pull_request:
     branches: ['main']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run Node
+      run: npm run start
+      env:
+        PASSWORD: ${{secrets.PASSWORD}}
+        DATABASE: ${{secrets.DATABASE}}
+        HOST: ${{secrets.HOST}}
+        USER: ${{secrets.USER}}
+        PORT: ${{secrets.PORT}}
