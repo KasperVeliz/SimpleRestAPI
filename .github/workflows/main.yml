@@ -1,5 +1,12 @@
 name: Simple REST API
-  
+
+env:
+  PASSWORD: ${{secrets.PASSWORD}}
+  DATABASE: ${{secrets.DATABASE}}
+  HOST: ${{secrets.HOST}}
+  USER: ${{secrets.USER}}
+  PORT: ${{secrets.PORT}}
+
 on:
   push:
     branches: ['main']
@@ -12,11 +19,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Run Node
-      run: npm run start
-      env:
-        PASSWORD: ${{secrets.PASSWORD}}
-        DATABASE: ${{secrets.DATABASE}}
-        HOST: ${{secrets.HOST}}
-        USER: ${{secrets.USER}}
-        PORT: ${{secrets.PORT}}
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v6.0.0
+      with:
+        node-version: 12.x
+          
